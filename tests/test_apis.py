@@ -39,12 +39,12 @@ class EndPointTestCase(APITestCase):
         assert res.status_code == 200
 
     def test_get_team_by_id(self):
-        url = reverse('team_id', kwargs={"pk": "1"})
+        url = reverse('team_id', kwargs={"pk": self.team.pk})
         res = self.client.get(url)
         assert res.status_code == 200
 
     def test_put_team(self):
-        url = reverse('team_id', kwargs={'pk': '1'})
+        url = reverse('team_id', kwargs={'pk': self.team.pk})
         data = {'name': 'example', 'club_state': 'test_example'}
         res = self.client.put(url, data)
         assert res.status_code == 200
@@ -68,12 +68,12 @@ class EndPointTestCase(APITestCase):
         assert res.status_code == 200
 
     def test_get_player_by_id(self):
-        url = reverse('player_id', kwargs={'pk': '1'})
+        url = reverse('player_id', kwargs={'pk': self.player.pk})
         res = self.client.get(url)
         assert res.status_code == 200
 
     def test_put_player(self):
-        url = reverse('player_id', kwargs={'pk': '1'})
+        url = reverse('player_id', kwargs={'pk': self.player.pk})
         data = {
             'first_name': 'test',
             'last_name': 'test',
@@ -85,6 +85,6 @@ class EndPointTestCase(APITestCase):
         assert res.status_code == 202
 
     def test_delete_player(self):
-        url = reverse('player_id', kwargs={'pk': '1'})
+        url = reverse('player_id', kwargs={'pk': self.player.pk})
         res = self.client.delete(url)
         assert res.status_code == 200
